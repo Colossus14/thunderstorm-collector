@@ -474,7 +474,7 @@ function Send-CollectionMarker {
         if ($_.Exception.Response) {
             $HttpStatus = $_.Exception.Response.StatusCode.value__
         }
-        # 404 or 501 means the server doesn't support collection markers — not fatal
+        # 404 or 501 means the server doesn't support collection markers -- not fatal
         if ($HttpStatus -eq 404 -or $HttpStatus -eq 501) {
             Write-Log "Collection marker endpoint not supported by server (HTTP $HttpStatus)" -Level "Debug"
             return ""
@@ -601,7 +601,7 @@ try {
         }
     }
     if ($IsConnectionFailure) {
-        # Connection failure — retry once after 2s
+        # Connection failure -- retry once after 2s
         Write-Log "Begin marker failed (connection error), retrying in 2 seconds..." -Level "Warning"
         Start-Sleep -Seconds 2
         try {
@@ -612,8 +612,8 @@ try {
             exit 2
         }
     } else {
-        # Server is reachable but returned an HTTP error — log warning and continue without scan_id
-        Write-Log "Begin marker returned HTTP $BeginHttpStatus — continuing without scan_id" -Level "Warning"
+        # Server is reachable but returned an HTTP error -- log warning and continue without scan_id
+        Write-Log "Begin marker returned HTTP $BeginHttpStatus -- continuing without scan_id" -Level "Warning"
     }
 }
 if ($ScanId) {

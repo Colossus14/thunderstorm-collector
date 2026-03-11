@@ -174,7 +174,7 @@ if ($Progress) {
                 if ($hostName -eq 'ConsoleHost') {
                     $ShowProgress = [Console]::WindowWidth -gt 0
                 } else {
-                    # ISE, remoting, custom hosts — no carriage-return progress
+                    # ISE, remoting, custom hosts -- no carriage-return progress
                     $ShowProgress = $false
                 }
             }
@@ -516,7 +516,7 @@ $Url = "$BaseUrl/api/checkAsync$($SourceParam)"
 Write-Log "Sending to URI: $($Url)" -Level "Debug"
 $ScanId = ""
 
-# PS 2.0 compatible JSON escape helper — single-pass over original string
+# PS 2.0 compatible JSON escape helper -- single-pass over original string
 function Escape-JsonString {
     param([string]$s)
     if ($s -eq $null) { return "" }
@@ -660,9 +660,9 @@ function Send-CollectionMarker {
         $ex = $_.Exception
         if ($ex.Response -ne $null) {
             $errCode = [int]$ex.Response.StatusCode
-            # 404 or 501 means the server doesn't support collection markers — continue without scan_id
+            # 404 or 501 means the server doesn't support collection markers -- continue without scan_id
             if ($errCode -eq 404 -or $errCode -eq 501) {
-                Write-Log "Collection marker '$MarkerType' not supported (HTTP $errCode) — server does not implement /api/collection" -Level "Debug"
+                Write-Log "Collection marker '$MarkerType' not supported (HTTP $errCode) -- server does not implement /api/collection" -Level "Debug"
                 return ""
             }
             Write-Log "Collection marker '$MarkerType' failed with HTTP $errCode" -Level "Error"
@@ -773,7 +773,7 @@ try {
 }
 
 # Note: PowerShell.Exiting fires on ALL exits (including normal completion),
-# so we do NOT register it — it would incorrectly send an "interrupted" marker
+# so we do NOT register it -- it would incorrectly send an "interrupted" marker
 # on clean runs. SIGTERM handling in PS 2.0 is a known limitation.
 
 # trap statement for catchable terminating errors within the script scope
@@ -897,7 +897,7 @@ while ($fileEnumerator.MoveNext()) {
             break
         }
         elseif ( $StatusCode -eq -1 ) {
-            # File could not be opened (missing, locked, permission denied) — no retry
+            # File could not be opened (missing, locked, permission denied) -- no retry
             Write-Log "Skipping file due to open failure: $($file.FullName)" -Level "Error"
             $global:ErrorCount++
             break
